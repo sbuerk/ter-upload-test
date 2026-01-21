@@ -70,10 +70,12 @@ jobs:
                 vendor/symfony \
                 vendor/autoload.php \
                 vendor/bin \
-              && cat <<< $(jq --indent 4 '."autoload"."psr-4" += {"DeepL\\": "vendor/deeplcom/deepl-php/src", "Http\\Discovery\\": "vendor/php-http/discovery/src"}' composer.json.orig) > composer.json.pretty \
+              && mv vendor packaged \
+              && cat <<< $(jq --indent 4 '."autoload"."psr-4" += {"DeepL\\": "packaged/deeplcom/deepl-php/src", "Http\\Discovery\\": "packaged/php-http/discovery/src"}' composer.json.orig) > composer.json.pretty \
               && rm -rf composer.json \
               && mv composer.json.pretty composer.json \
               && rm -rf composer.json.orig
+              && rm -rf packaged vendor
 
       - name: Install tailor
         run: composer global require typo3/tailor --prefer-dist --no-progress --no-suggest
