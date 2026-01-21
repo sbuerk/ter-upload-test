@@ -42,6 +42,11 @@
 			"dev-main": "1.x.x-dev"
 		}
 	},
+	"autoload": {
+		"psr-4": {
+			"SBUERK\\DummyExtension\\": "Classes/"
+		}
+	},
 	"require": {
 		"php": "^8.1 || ^8.2 || ^8.3 || ^8.4",
 		"ext-curl": "*",
