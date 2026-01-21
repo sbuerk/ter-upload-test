@@ -100,10 +100,11 @@ jobs:
             LICENSE
           fail_on_unmatched_files: true
 
-#      - name: Publish to TER
-#        run: |
-#          php ~/.composer/vendor/bin/tailor ter:publish --comment "${{ env.terReleaseNotes }}" ${{ env.version }} \
-#            --artefact=tailor-version-artefact/${{ env.DETECTED_EXTENSION_KEY }}_${{ env.version }}.zip
+      - name: Publish to TER
+        run: |
+          TYPO3_EXCLUDE_FROM_PACKAGING="Build/tailor/ExcludeFromPackaging.php" \
+            php ~/.composer/vendor/bin/tailor ter:publish --comment "${{ env.terReleaseNotes }}" ${{ env.version }} \
+              --artefact=tailor-version-artefact/${{ env.DETECTED_EXTENSION_KEY }}_${{ env.version }}.zip
 
       #-----------------------------------------------------------------------------------------------------------------
       # INTEGRATION STEPS
