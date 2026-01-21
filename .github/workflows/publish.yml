@@ -74,8 +74,7 @@ jobs:
               && cat <<< $(jq --indent 4 '."autoload"."psr-4" += {"DeepL\\": "packaged/deeplcom/deepl-php/src", "Http\\Discovery\\": "packaged/php-http/discovery/src"}' composer.json.orig) > composer.json.pretty \
               && rm -rf composer.json \
               && mv composer.json.pretty composer.json \
-              && rm -rf composer.json.orig \
-              && rm -rf packaged vendor
+              && rm -rf composer.json.orig
 
       - name: Install tailor
         run: composer global require typo3/tailor --prefer-dist --no-progress --no-suggest
